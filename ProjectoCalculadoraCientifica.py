@@ -20,8 +20,8 @@ def click_boton(caracter):
         display.insert(tk.END, caracter)
 
 root = tk.Tk()
-root.title("Calculadora Científica Simple")
-root.geometry("320x500")
+root.title("Calculadora Científica Simple.Updated")
+root.geometry("400x500")
 
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)
@@ -35,27 +35,31 @@ root.grid_columnconfigure(1, weight=1)
 root.grid_columnconfigure(2, weight=1)
 root.grid_columnconfigure(3, weight=1)
 
-display = tk.Entry(root, font=("Arial", 20), bd=5, justify="right")
+display = tk.Entry(root, font=("Helvetica", 25,"bold"), bd=5, justify="right")
 display.grid(row=0, column=0, columnspan=4, sticky=tk.NSEW, padx=5, pady=5)
 
 botones = [
-    'sin(', 'cos(', 'tan(', 'sqrt(',
-    'log(', '**', '(', ')',
-    '7', '8', '9', '/',
-    '4', '5', '6', '*',
-    '1', '2', '3', '-',
-    '0', '.', '=', '+',
-    'C'
+    'sin(','cos(','tan(','sqrt(',
+    'log(','ln(','exp(',
+    'pi','e','**','(',')','+',
+    '7','8','9','/',
+    '4','5','6','*',
+    '1','2','3','-',
+    '.','0','=','C'
 ]
 
 row_num = 1
 col_num = 0
 
 for boton_texto in botones:
-    if boton_texto:  # Skip empty strings
-        button = tk.Button(root, text=boton_texto, font=("Arial", 16),
-                           command=lambda b=boton_texto: click_boton(b))
-        button.grid(row=row_num, column=col_num, sticky=tk.NSEW, padx=5, pady=5)
+    if boton_texto == '=':
+        button = tk.Button(root, text=boton_texto, font=("Arial", 16), command=lambda b=boton_texto: click_boton(b))
+    elif boton_texto == 'C':
+        button = tk.Button(root, text=boton_texto, font=("Arial", 16), command=lambda b=boton_texto: click_boton(b))
+    else:
+        button = tk.Button(root, text=boton_texto, font=("Arial", 16), command=lambda b=boton_texto: click_boton(b))
+
+    button.grid(row=row_num, column=col_num, sticky=tk.NSEW, padx=5, pady=5)
 
     col_num += 1
     if col_num > 3:
